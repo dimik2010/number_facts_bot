@@ -17,3 +17,14 @@ dependencies {
 
     runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.9.1'
 }
+
+jar {
+    from {
+        (configurations.runtime).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes('Main-Class': 'Main')
+    }
+}

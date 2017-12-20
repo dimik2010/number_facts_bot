@@ -7,7 +7,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class NumbersAPI {
-    public static final Logger log = LoggerFactory.getLogger(NumbersAPI.class);
+    private static final Logger log = LoggerFactory.getLogger(NumbersAPI.class);
 
     private static final String MATH_URL = "http://numbersapi.com/%d/math";
     private static final String TRIVIA_URL = "http://numbersapi.com/%d";
