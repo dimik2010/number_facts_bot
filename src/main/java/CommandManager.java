@@ -2,7 +2,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class CommandManager {
+    private static final Logger log = LoggerFactory.getLogger(CommandManager.class);
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd MM yy");
     private static final String MAX_INT_AS_STRING = String.valueOf(Integer.MAX_VALUE);
@@ -10,6 +14,7 @@ public class CommandManager {
     public static BotCommand getImplementation(String message) {
         int spaceIndex = message.indexOf(' ');
         if (spaceIndex < 0) {
+            log.info("invalid command: no spaces in message");
             return new InvalidCommand("invalid command");
         }
         String command = message.trim().substring(0, spaceIndex);
@@ -18,22 +23,29 @@ public class CommandManager {
         switch (command) {
         case "/math":
             if (!isValidNumber(data)) {
+                log.info("invalid command /math: not a valid number <{}>", data);
                 return new InvalidCommand("invalid number");
             }
+            log.info("implementation <MathCommand> chosen");
             return new MathCommand(Integer.parseInt(data));
         case "/trivia":
             if (!isValidNumber(data)) {
+                log.info("invalid command /trivia: not a valid number <{}>", data);
                 return new InvalidCommand("invalid number");
             }
+            log.info("implementation <TriviaCommand> chosen");
             return new TriviaCommand(Integer.parseInt(data));
         case "/date":
             if (!isValidDate(data)) {
+                log.info("invalid command /date: not a valid date <{}>", data);
                 return new InvalidCommand("invalid date: enter date in format 'dd MM'");
             }
             data += " 00"; // necessary to parse with LocalDate.parse
             LocalDate localDate = LocalDate.parse(data, DATE_FORMATTER);
+            log.info("implementation <DateCommand> chosen");
             return new DateCommand(localDate);
         default:
+            log.info("<{}>: command does not exits", command);
             return new InvalidCommand("invalid command");
         }
     }
@@ -45,11 +57,6 @@ public class CommandManager {
         }
         return MAX_INT_AS_STRING.length() != numberString.length()
                 || MAX_INT_AS_STRING.compareTo(numberString) >= 0;
-    }
-
-    public static void main(String[] args) {
-        BotCommand implementation = CommandManager.getImplementation("/trivia 228");
-        System.out.println(implementation.getClass());
     }
 
     private static boolean isValidDate(String dateString) {
