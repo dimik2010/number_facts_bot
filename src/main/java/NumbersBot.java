@@ -4,6 +4,11 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class NumbersBot extends TelegramLongPollingBot {
+    private final String token;
+
+    public NumbersBot(String token) {
+        this.token = token;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -32,6 +37,6 @@ public class NumbersBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "462368299:AAG70WuxwFvh0hhstKpap9jUGCe1Ku_yhHw";
+        return token;
     }
 }

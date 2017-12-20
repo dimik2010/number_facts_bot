@@ -43,7 +43,13 @@ public class CommandManager {
                 || numberString.length() > MAX_INT_AS_STRING.length()) {
             return false;
         }
-        return MAX_INT_AS_STRING.compareTo(numberString) >= 0;
+        return MAX_INT_AS_STRING.length() != numberString.length()
+                || MAX_INT_AS_STRING.compareTo(numberString) >= 0;
+    }
+
+    public static void main(String[] args) {
+        BotCommand implementation = CommandManager.getImplementation("/trivia 228");
+        System.out.println(implementation.getClass());
     }
 
     private static boolean isValidDate(String dateString) {
