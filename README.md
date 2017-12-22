@@ -5,10 +5,11 @@
 ### Функциональность
 Бот может выводить математические факты о числах (/math), "интересные" факты (/trivia) и информацию об определенной дате (/date)
 
-![screenshot](.github/screenshot.png)
+<p align="center">
+  <img src=".github/screenshot.png" width="350px"/>
+</p>
 
 ### Используемые технологии
-
 * Для работы с Telegram API используется библиотека [org.telegram:telegrambots](https://github.com/rubenlagus/TelegramBots)
 * Данные о числах получаем из [NumbersAPI](http://numbersapi.com/)
 * Отправка HTTP-запросов реализована с помощью [Unirest](http://unirest.io/java.html)
