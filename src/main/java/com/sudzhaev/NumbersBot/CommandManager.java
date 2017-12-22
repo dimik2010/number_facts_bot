@@ -30,7 +30,7 @@ public class CommandManager {
             return new InvalidCommand("invalid command");
         }
         String command = message.substring(0, spaceIndex);
-        String data = message.substring(spaceIndex + 1, message.length());
+        String data = message.substring(spaceIndex + 1, message.length()).trim();
 
         switch (command) {
         case "/math":
@@ -72,7 +72,7 @@ public class CommandManager {
     }
 
     private static boolean isValidDate(String dateString) {
-        String[] date = dateString.split(" ");
+        String[] date = dateString.split(" +");
         if (date.length <= 1) {
             return false;
         }
