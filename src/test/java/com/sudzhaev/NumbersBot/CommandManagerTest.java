@@ -111,8 +111,8 @@ public class CommandManagerTest {
 
     @Test
     public void dateSpacesTest() {
-        BotCommand implementation = CommandManager.getImplementation("        /date           31 02   ");
-        assertTrue(implementation instanceof InvalidCommand);
+        BotCommand implementation = CommandManager.getImplementation("        /date           31 03   ");
+        assertTrue(implementation instanceof DateCommand);
     }
 
     @Test
@@ -131,7 +131,7 @@ public class CommandManagerTest {
 
     @Test
     public void dateInvalidFormatTest() {
-        BotCommand implementation = CommandManager.getImplementation("   /date   31    02   ");
+        BotCommand implementation = CommandManager.getImplementation("   /date   12    02   ");
         assertTrue(implementation instanceof InvalidCommand);
     }
 

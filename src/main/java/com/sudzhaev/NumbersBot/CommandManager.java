@@ -72,7 +72,7 @@ public class CommandManager {
     }
 
     private static boolean isValidDate(String dateString) {
-        String[] date = dateString.split(" +");
+        String[] date = dateString.split(" ");
         if (date.length <= 1) {
             return false;
         }
