@@ -10,9 +10,11 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 public class NumbersBot extends TelegramLongPollingBot {
     private static final Logger log = LoggerFactory.getLogger(NumbersBot.class);
     private final String token;
+    private final String name;
 
-    public NumbersBot(String token) {
+    public NumbersBot(String token, String name) {
         this.token = token;
+        this.name = name;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class NumbersBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "number_facts_bot";
+        return name;
     }
 
     @Override

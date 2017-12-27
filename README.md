@@ -16,7 +16,7 @@
 
 ### Сборка
 
-Для корректной работы бота необходимо создать файл ```application.properties``` с ключами ```telegram_token``` и ```help_message```
+Для корректной работы бота необходимо создать файл ```application.properties``` с ключами ```telegram_token```, ```bot_username``` и ```help_message```
 
 Проект собирается с помощью Gradle
 <pre>

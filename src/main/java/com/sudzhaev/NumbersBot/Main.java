@@ -27,7 +27,9 @@ public class Main {
         ApiContextInitializer.init();
         TelegramBotsApi api = new TelegramBotsApi();
         try {
-            api.registerBot(new NumbersBot(props.getProperty("telegram_token")));
+            String token = props.getProperty("telegram_token");
+            String botUsername = props.getProperty("bot_username");
+            api.registerBot(new NumbersBot(token, botUsername));
             log.info("bot successfully registered");
         } catch (TelegramApiRequestException e) {
             log.error("bot not registered");
